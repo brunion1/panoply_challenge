@@ -176,5 +176,3 @@ function stripRemainingAdSlots(audioString){
     audioString = audioString.replace("[POST]", "");
     return audioString;
 }
-
-generatePodcast(podcast1, campaignList);
