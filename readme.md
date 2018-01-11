@@ -6,7 +6,12 @@ a simulated podcast string with applicable advertisements inserted.
 
 ## Getting Started
 
-Please paste the entirety of index.js into a browser console. Then, when ready, execute the function generatePodcast(episode, campaigns). 
+To begin, paste the entirety of index.js into a browser console. Then, when ready, execute the following function:
+
+```
+generatePodcast(episode, campaigns)
+```
+
 The sample episode and campaign data that were tested against are included below.
 
 ### Sample Data
