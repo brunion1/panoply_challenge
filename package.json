@@ -1,0 +1,17 @@
+{
+  "name": "panoply_challenge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/brunion1/panoply_challenge.git",
+  "author": "Runion, Beau <Beau.Runion@flooranddecor.com>",
+  "license": "MIT",
+  "scripts": {
+    "babel": "babel --presets es2015 js/index.js -o build/index.bundle.js",
+    "start": "http-server",
+    "webpack": "webpack"
+  },
+  "dependencies": {
+    "babel-loader": "^7.1.2",
+    "webpack": "^3.10.0"
+  }
+}
