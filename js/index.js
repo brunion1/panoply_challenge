@@ -35,13 +35,18 @@ function generatePodcast(episode, campaigns){
 
         var compatibleCampaigns = getCompatibleCampaigns(audioString, availableCampaigns); //getting a list of compatible campaigns
         console.log("Compatible campaigns are... " + JSON.stringify(compatibleCampaigns));
-        var campaign = getMostLucrativeCampaign(compatibleCampaigns); //filtering by most lucrative
-        console.log("Most lucrative campaign is... " + JSON.stringify(campaign));
-        audioString = replaceAudioStrings(audioString, campaign); // replacing ad slots with ads
-        console.log("New audio string is... " + audioString);
-        removeUsedCampaign(campaign, availableCampaigns); //splicing out bad index
-        console.log("Available campaigns after stripping... " + JSON.stringify(campaign));
-        compatibleCampaigns = getCompatibleCampaigns(audioString, availableCampaigns);
+
+        //quick safety if...else block
+        if(compatibleCampaigns.length > 0){
+            var campaign = getMostLucrativeCampaign(compatibleCampaigns); //filtering by most lucrative
+            console.log("Most lucrative campaign is... " + JSON.stringify(campaign));
+            audioString = replaceAudioStrings(audioString, campaign); // replacing ad slots with ads
+            console.log("New audio string is... " + audioString);
+            removeUsedCampaign(campaign, availableCampaigns); //splicing out bad index
+            console.log("Available campaigns after stripping... " + JSON.stringify(campaign));
+            compatibleCampaigns = getCompatibleCampaigns(audioString, availableCampaigns);    
+        }
+
         if(compatibleCampaigns.length > 0){
             compatibleCampaignsExist = true;
         }else{
@@ -80,7 +85,7 @@ function getCompatibleCampaigns(audioString, availableCampaigns){
     return compatibleCampaigns;
 }
 
-function getMostLucrativeCampaign(campaigns){
+function getMostLucrativeCampaign(campaigns = []){
     /*
         It would probably be better to create as many valid audio strings as possible, point each of them, then return the most lucrative back to the user.
         That said, it'd add some complexity and blow through a lot of time. This method ensures that our starting point for audio creation is at least the most 
@@ -171,8 +176,14 @@ function removeUsedCampaign(usedCampaign, availableCampaigns){
 
 function stripRemainingAdSlots(audioString){
     // for a seamless podcasting experience
-    audioString = audioString.replace("[PRE]", "");
-    audioString = audioString.replace("[MID]", "");
-    audioString = audioString.replace("[POST]", "");
+    audioString = audioString.replaceAll("[PRE]", "");
+    audioString = audioString.replaceAll("[MID]", "");
+    audioString = audioString.replaceAll("[POST]", "");
     return audioString;
 }
+
+//regex help from StackOverflow to fill in some missing JS functionality
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.split(search).join(replacement);
+};
