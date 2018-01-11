@@ -14,8 +14,10 @@ The sample episode and campaign data that were tested against are included below
 Sample episodes
 
 ```
-var podcast1 = { audio: "[PRE]+++++[MID]+++++", id: "dag-892" };
-var podcast2 = { audio: "+++++[MID]++++[MID]++++[POST]", id: "kld-412" };
+var podcast1 = { audio: "[PRE]+++++[MID]+++++",                      id: "dag-892" };
+var podcast2 = { audio: "+++++[MID]++++[MID]++++[POST]",             id: "kld-412" };
+var podcast3 = { audio: "[PRE][PRE]+++++[MID]+++[MID]+++++[POST]",   id: "abc-444" };
+var podcast4 = { audio: "++++[MID]+++++[MID]++++[MID]++[POST]",      id: "paj-103" };
 ```
 
 Sample campaign array
